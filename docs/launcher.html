@@ -28,17 +28,17 @@ h2{margin-top:24px;font-weight:600;color:#e6eef8; font-size:18px;}
 
 .grid{
   display:grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap:18px;
-  margin-top:16px;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:12px;
+  margin-top:12px;
 }
 
 .tile{
-  min-height:120px;
-  border-radius:18px;
-  padding:18px;
+  min-height:100px;
+  border-radius:14px;
+  padding:12px;
   display:flex;
-  gap:12px;
+  gap:10px;
   align-items:center;
   box-shadow: 0 6px 18px rgba(2,6,12,0.7);
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
@@ -47,30 +47,29 @@ h2{margin-top:24px;font-weight:600;color:#e6eef8; font-size:18px;}
   border: 1px solid var(--glass-border);
   cursor:pointer;
   transition: transform .14s ease, box-shadow .14s ease;
+  font-size:14px;
 }
 .tile:active{ transform: translateY(2px) scale(.998); }
-.tile:hover{ box-shadow: 0 12px 28px rgba(3,8,18,0.8); transform: translateY(-4px); }
+.tile:hover{ box-shadow: 0 12px 28px rgba(3,8,18,0.8); transform: translateY(-2px); }
 
 .icon{
-  min-width:64px;min-height:64px;border-radius:14px;
+  min-width:50px;min-height:50px;border-radius:12px;
   display:flex;align-items:center;justify-content:center;
-  font-size:28px;padding:10px;
+  font-size:24px;padding:8px;
   background: rgba(255,255,255,0.03);
-  border-radius:12px;
   flex-shrink:0;
-  box-shadow: inset 0 -6px 10px rgba(0,0,0,0.25);
 }
 
 .label{ display:flex;flex-direction:column; }
-.label .name{ font-weight:600;font-size:17px; }
-.label .desc{ color:var(--muted); font-size:13px;margin-top:6px; }
+.label .name{ font-weight:600; font-size:15px; line-height:1.1; }
+.label .desc{ color:var(--muted); font-size:11px; margin-top:4px; }
 
 .grid-1{ grid-column: 1 / -1; justify-items:center; }
 
 footer{ margin-top:18px; color:var(--muted); font-size:13px; text-align:center; }
 @media (min-width:900px){
-  .grid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
-  .tile{ min-height:130px; padding:20px; }
+  .grid{ grid-template-columns: repeat(4, minmax(0,1fr)); }
+  .tile{ min-height:110px; padding:14px; }
 }
 </style>
 </head>
@@ -96,62 +95,123 @@ footer{ margin-top:18px; color:var(--muted); font-size:13px; text-align:center; 
     <div class="tile" onclick="openApp('mychart://')">
       <div class="icon">🩺</div>
       <div class="label">
-        <div class="name">MyChart (UCSF)</div>
+        <div class="name">MyChart</div>
         <div class="desc">View records</div>
       </div>
     </div>
   </div>
 
-  <!-- Categories -->
+  <!-- Watch -->
   <h2>I want to watch</h2>
   <div class="grid">
     <div class="tile" onclick="openApp('nflx://')">
       <div class="icon">🎬</div>
-      <div class="label">
-        <div class="name">Netflix</div>
-        <div class="desc">Movies & Shows</div>
-      </div>
+      <div class="label"><div class="name">Netflix</div><div class="desc">Movies & Shows</div></div>
     </div>
     <div class="tile" onclick="openApp('plutotv://')">
       <div class="icon">📺</div>
-      <div class="label">
-        <div class="name">Pluto TV</div>
-        <div class="desc">Live TV</div>
-      </div>
+      <div class="label"><div class="name">Pluto TV</div><div class="desc">Live TV</div></div>
+    </div>
+    <div class="tile" onclick="openApp('disneyplus://')">
+      <div class="icon">🦸‍♂️</div>
+      <div class="label"><div class="name">Disney+</div><div class="desc">Streaming</div></div>
+    </div>
+    <div class="tile" onclick="openApp('espn://')">
+      <div class="icon">🏈</div>
+      <div class="label"><div class="name">ESPN</div><div class="desc">Sports</div></div>
+    </div>
+    <div class="tile" onclick="openApp('foxnow://')">
+      <div class="icon">🦊</div>
+      <div class="label"><div class="name">Fox Now</div><div class="desc">Live TV</div></div>
+    </div>
+    <div class="tile" onclick="openApp('youtube://')">
+      <div class="icon">▶️</div>
+      <div class="label"><div class="name">YouTube</div><div class="desc">Video</div></div>
     </div>
   </div>
 
+  <!-- Music -->
+  <h2>Listen to Music</h2>
+  <div class="grid">
+    <div class="tile" onclick="openApp('abc://')">
+      <div class="icon">🎵</div>
+      <div class="label"><div class="name">ABC</div><div class="desc">Music</div></div>
+    </div>
+    <div class="tile" onclick="openApp('amazonmusic://')">
+      <div class="icon">🎶</div>
+      <div class="label"><div class="name">Amazon Music</div><div class="desc"></div></div>
+    </div>
+    <div class="tile" onclick="openApp('pandora://')">
+      <div class="icon">🎧</div>
+      <div class="label"><div class="name">Pandora</div><div class="desc"></div></div>
+    </div>
+    <div class="tile" onclick="openApp('spotify://')">
+      <div class="icon">🎷</div>
+      <div class="label"><div class="name">Spotify</div><div class="desc"></div></div>
+    </div>
+    <div class="tile" onclick="openApp('iheart://')">
+      <div class="icon">❤️</div>
+      <div class="label"><div class="name">iHeart Radio</div><div class="desc"></div></div>
+    </div>
+    <div class="tile" onclick="openApp('hbomax://')">
+      <div class="icon">🎬</div>
+      <div class="label"><div class="name">HBO Max</div><div class="desc"></div></div>
+    </div>
+  </div>
+
+  <!-- Read / News -->
   <h2>I want to read</h2>
   <div class="grid">
-    <!-- Add reading apps here -->
-    <div class="tile" onclick="openApp('books://')">
-      <div class="icon">📚</div>
-      <div class="label">
-        <div class="name">Books</div>
-        <div class="desc">Ebooks / Guides</div>
-      </div>
+    <div class="tile" onclick="openApp('calm://')">
+      <div class="icon">😴</div>
+      <div class="label"><div class="name">Calm</div><div class="desc">Sleep & Meditation</div></div>
+    </div>
+    <div class="tile" onclick="openApp('foxnews://')">
+      <div class="icon">📰</div>
+      <div class="label"><div class="name">Fox News</div><div class="desc"></div></div>
+    </div>
+    <div class="tile" onclick="openApp('sfchronicle://')">
+      <div class="icon">📰</div>
+      <div class="label"><div class="name">SF Chronicle</div><div class="desc"></div></div>
+    </div>
+    <div class="tile" onclick="openApp('nytimes://')">
+      <div class="icon">📰</div>
+      <div class="label"><div class="name">NY Times</div><div class="desc"></div></div>
+    </div>
+    <div class="tile" onclick="openApp('nbcbay://')">
+      <div class="icon">🌦️</div>
+      <div class="label"><div class="name">NBC Bay Area</div><div class="desc">News & Weather</div></div>
     </div>
   </div>
 
+  <!-- Games -->
   <h2>I want to play games</h2>
   <div class="grid">
     <div class="tile" onclick="openApp('sudoku://')">
       <div class="icon">🔢</div>
-      <div class="label">
-        <div class="name">Sudoku</div>
-        <div class="desc">Relaxing puzzles</div>
-      </div>
+      <div class="label"><div class="name">Sudoku</div><div class="desc">Relaxing puzzles</div></div>
+    </div>
+    <div class="tile" onclick="openApp('solitaire://')">
+      <div class="icon">🃏</div>
+      <div class="label"><div class="name">Solitaire</div><div class="desc">Card games</div></div>
     </div>
   </div>
 
+  <!-- Interpreter -->
   <h2>I want an interpreter</h2>
   <div class="grid">
     <div class="tile" onclick="openApp('zoommtg://')">
       <div class="icon">🗣️</div>
-      <div class="label">
-        <div class="name">Zoom Interpreter</div>
-        <div class="desc">Join interpreter session</div>
-      </div>
+      <div class="label"><div class="name">Zoom Interpreter</div><div class="desc">Join session</div></div>
+    </div>
+  </div>
+
+  <!-- Download More Apps -->
+  <h2>Download More Apps</h2>
+  <div class="grid">
+    <div class="tile" onclick="openApp('selfserviceios://')">
+      <div class="icon">⬇️</div>
+      <div class="label"><div class="name">Self Service</div><div class="desc">Download apps</div></div>
     </div>
   </div>
 
@@ -162,7 +222,7 @@ footer{ margin-top:18px; color:var(--muted); font-size:13px; text-align:center; 
 
 <script>
 function openApp(appScheme){
-    var fallback = "selfserviceios://"; // Opens Jamf Self Service if app not installed
+    var fallback = "selfserviceios://";
     var now = Date.now();
     window.location = appScheme;
     setTimeout(function(){
@@ -171,8 +231,6 @@ function openApp(appScheme){
         }
     }, 1100);
 }
-
-// Accessibility: Space/Enter triggers tiles
 document.querySelectorAll('.tile').forEach(function(el){
   el.addEventListener('keydown', function(e){
     if(e.key === 'Enter' || e.key === ' ') el.click();
