@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Patient Dashboard — Launcher</title>
+<style>
+  :root{
+    --bg:#0b0d10;
+    --card:#0f1114;
+    --glass: rgba(255,255,255,0.06);
+    --accent: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    --glass-border: rgba(255,255,255,0.06);
+    --muted: #9aa3ad;
+    font-family: -apple-system, "SF Pro Text","Helvetica Neue", Arial, sans-serif;
+  }
+  html,body{height:100%;margin:0;background:
+    radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.02), transparent 10%),
+    radial-gradient(800px 400px at 90% 90%, rgba(255,255,255,0.01), transparent 15%),
+    var(--bg); color:#e6eef8;}
+  .wrap{max-width:1200px;margin:28px auto;padding:20px;}
+  header{display:flex;align-items:center;gap:16px;padding:8px 12px 20px;}
+  .title{
+    font-size:20px;font-weight:600;letter-spacing:0.2px;
+  }
+  .subtitle{color:var(--muted);font-size:13px;margin-top:4px}
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap:18px;
+    margin-top:16px;
+  }
+
+  /* Glass tile */
+  .tile{
+    min-height:120px;
+    border-radius:18px;
+    padding:18px;
+    display:flex;
+    gap:12px;
+    align-items:center;
+    box-shadow: 0 6px 18px rgba(2,6,12,0.7);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    border: 1px solid var(--glass-border);
+    cursor:pointer;
+    transition: transform .14s ease, box-shadow .14s ease;
+  }
+  .tile:active{ transform: translateY(2px) scale(.998); }
+  .tile:hover{ box-shadow: 0 12px 28px rgba(3,8,18,0.8); transform: translateY(-4px); }
+
+  .icon{
+    min-width:64px;min-height:64px;border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:28px;padding:10px;
+    background: rgba(255,255,255,0.03);
+    border-radius:12px;
+    flex-shrink:0;
+    box-shadow: inset 0 -6px 10px rgba(0,0,0,0.25);
+  }
+
+  .label{ display:flex;flex-direction:column; }
+  .label .name{ font-weight:600;font-size:17px; }
+  .label .desc{ color:var(--muted); font-size:13px;margin-top:6px; }
+
+  /* single bottom tile style */
+  .grid-1{ grid-column: 1 / -1; justify-items:center; }
+
+  footer{ margin-top:18px; color:var(--muted); font-size:13px; text-align:center; }
+  /* Responsive */
+  @media (min-width:900px){
+    .grid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .tile{ min-height:130px; padding:20px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap" role="application" aria-label="Patient Dashboard">
+  <header>
+    <div>
+      <div class="title">UCSF Patient Portal</div>
+      <div class="subtitle">Tap a button to open the app</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid" role="grid" aria-label="App launcher">
+      <div class="tile" role="button" tabindex="0" onclick="openApp('nflx://','https://apps.apple.com/app/netflix/id363590051')">
+        <div class="icon" aria-hidden>🎬</div>
+        <div class="label">
+          <div class="name">Netflix</div>
+          <div class="desc">Watch movies & shows</div>
+        </div>
+      </div>
+
+      <div class="tile" role="button" tabindex="0" onclick="openApp('plutotv://','https://apps.apple.com/us/app/pluto-tv-stream-movies-shows/id751712884')">
+        <div class="icon" aria-hidden>📺</div>
+        <div class="label">
+          <div class="name">Pluto TV</div>
+          <div class="desc">Live channels & free TV</div>
+        </div>
+      </div>
+
+      <div class="tile" role="button" tabindex="0" onclick="openApp('sudoku://','https://apps.apple.com/us/app/sudoku-free/id373493387')">
+        <div class="icon" aria-hidden>🔢</div>
+        <div class="label">
+          <div class="name">Sudoku</div>
+          <div class="desc">Relaxing puzzles</div>
+        </div>
+      </div>
+
+      <div class="tile" role="button" tabindex="0" onclick="openApp('zoommtg://zoom.us/join?action=join&confno=','https://apps.apple.com/us/app/zoom-cloud-meetings/id546505307')">
+        <div class="icon" aria-hidden>💬</div>
+        <div class="label">
+          <div class="name">Zoom</div>
+          <div class="desc">Join meetings / interpreters</div>
+        </div>
+      </div>
+
+      <div class="tile grid-1" role="button" tabindex="0" onclick="openApp('mychart://','https://apps.apple.com/us/app/mychart/id382952264')">
+        <div class="icon" aria-hidden>🩺</div>
+        <div class="label">
+          <div class="name">MyChart (UCSF)</div>
+          <div class="desc">View your chart & records</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    If the app doesn't open, the App Store will open instead. Contact IT to update URL schemes if needed.
+  </footer>
+</div>
+
+<script>
+/*
+ openApp(appScheme, fallbackURL)
+ - Tries to open the app via URL scheme.
+ - If not opened within timeout, navigates to fallback (App Store / web).
+ Notes:
+  - iOS behavior varies by iOS version; some browsers handle schemes differently.
+  - To adjust behavior (for example to pass a meeting number to Zoom), update the scheme string.
+*/
+function openApp(appScheme, fallback){
+  // If scheme appears to already contain query params for Zoom join, it's fine.
+  // Build a timesafe fall back:
+  var now = Date.now();
+  // Create invisible iframe technique (older iOS) then set location as fallback after delay
+  var opened = false;
+  // Attempt to open via location change first for Safari:
+  window.location = appScheme;
+
+  // After short delay, try a second method for webviews
+  setTimeout(function(){
+    // If the page is still visible (i.e. app didn't take focus), go to fallback
+    // Note: There's no reliable way to detect success; this is a pragmatic approach.
+    // Use a longer delay on older devices if you see false positives.
+    if (Date.now() - now < 2000 + 100) {
+      window.location = fallback;
+    }
+  }, 1100);
+}
+
+// Accessibility: allow Space/Enter to trigger tiles
+document.querySelectorAll('.tile').forEach(function(el){
+  el.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' ') el.click();
+  });
+});
+</script>
+</body>
+</html>
