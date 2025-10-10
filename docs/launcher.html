@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UCSF iPad Launcher</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>UCSF Patient Portal</title>
 <style>
 :root{
-  --glass: rgba(255,255,255,0.05);
+  --bg:#0b0d10;
+  --card:#0f1114;
+  --glass: rgba(255,255,255,0.06);
+  --accent: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
   --glass-border: rgba(255,255,255,0.06);
   --muted: #9aa3ad;
   font-family: -apple-system, "SF Pro Text","Helvetica Neue", Arial, sans-serif;
@@ -79,10 +82,12 @@ h2{
 </head>
 <body>
 
-<h2>Quick Access</h2>
+<h2>UCSF Applications</h2>
 <div class="slider">
   <div class="tile" onclick="openApp('us.zoom.videomeetings')"><div class="icon">💬</div><div class="label"><div class="name">Zoom</div><div class="desc">Interpreter</div></div></div>
   <div class="tile" onclick="openApp('com.epic.mychartbedside')"><div class="icon">🩺</div><div class="label"><div class="name">MyChart</div><div class="desc">Records</div></div></div>
+  <div class="tile" onclick="openApp('us.zoom.videomeetings')"><div class="icon">🗣️</div><div class="label"><div class="name">Zoom Interpreter</div></div></div>
+  <div class="tile" onclick="openApp('com.jamfsoftware.selfservice')"><div class="icon">⬇️</div><div class="label"><div class="name">Self Service</div></div></div>
 </div>
 
 <h2>I want to watch</h2>
@@ -123,12 +128,6 @@ h2{
   <div class="tile" onclick="openApp('com.midasplayer.apps.candycrushsaga')"><div class="icon">🍬</div><div class="label"><div class="name">Candy Crush</div></div></div>
   <div class="tile" onclick="openApp('com.kiloo.subwaysurfers')"><div class="icon">🏃‍♂️</div><div class="label"><div class="name">Subway Surfers</div></div></div>
   <div class="tile" onclick="openApp('com.innersloth.amongus')"><div class="icon">👾</div><div class="label"><div class="name">Among Us</div></div></div>
-</div>
-
-<h2>Interpreter / Utilities</h2>
-<div class="slider">
-  <div class="tile" onclick="openApp('us.zoom.videomeetings')"><div class="icon">🗣️</div><div class="label"><div class="name">Zoom Interpreter</div></div></div>
-  <div class="tile" onclick="openApp('com.jamfsoftware.selfservice')"><div class="icon">⬇️</div><div class="label"><div class="name">Self Service</div></div></div>
 </div>
 
 <script>
