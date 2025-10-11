@@ -82,13 +82,15 @@ h2{
 </head>
 <body>
 
-<h2>UCSF Applications</h2>
-<div class="slider">
-  <div class="tile" onclick="openApp('us.zoom.videomeetings')"><div class="icon">💬</div><div class="label"><div class="name">Zoom</div><div class="desc">Interpreter</div></div></div>
-  <div class="tile" onclick="openApp('com.epic.mychartbedside')"><div class="icon">🩺</div><div class="label"><div class="name">MyChart</div><div class="desc">Records</div></div></div>
-  <div class="tile" onclick="openApp('us.zoom.videomeetings')"><div class="icon">🗣️</div><div class="label"><div class="name">Zoom Interpreter</div></div></div>
-  <div class="tile" onclick="openApp('com.jamfsoftware.selfservice')"><div class="icon">⬇️</div><div class="label"><div class="name">Self Service</div></div></div>
-</div>
+<h2>UCSF Applications</h2><div class="slider">
+  <div class="tile" onclick="window.open('https://www.ucsfhealth.org/mychart','_blank')">
+    <div class="icon">🩺</div>
+    <div class="label"><div class="name">MyChart</div><div class="desc">Records (Web)</div></div>
+  </div>
+  <div class="tile" onclick="openApp('zoomus://')">
+    <div class="icon">💬</div>
+    <div class="label"><div class="name">Zoom</div><div class="desc">Start a Zoom Meeting</div></div>
+  </div>
 
 <h2>I want to watch</h2>
 <div class="slider">
@@ -114,12 +116,27 @@ h2{
 
 <h2>I want to read / news</h2>
 <div class="slider">
-  <div class="tile" onclick="openApp('com.calm.calmapp')"><div class="icon">😴</div><div class="label"><div class="name">Calm</div></div></div>
-  <div class="tile" onclick="openApp('com.foxnews.foxnews')"><div class="icon">📰</div><div class="label"><div class="name">Fox News</div></div></div>
-  <div class="tile" onclick="openApp('com.hearstnp.sfgate.ipad.paid')"><div class="icon">📰</div><div class="label"><div class="name">SF Chronicle</div></div></div>
-  <div class="tile" onclick="openApp('com.nytimes.NYTimes')"><div class="icon">📰</div><div class="label"><div class="name">NY Times</div></div></div>
-  <div class="tile" onclick="openApp('com.nbcuni.lim.bay')"><div class="icon">🌦️</div><div class="label"><div class="name">NBC Bay Area</div></div></div>
-</div>
+    <div class="tile" onclick="openApp('calm://')">
+      <div class="icon">😴</div>
+      <div class="label"><div class="name">Calm</div><div class="desc">Sleep & Meditation</div></div>
+    </div>
+    <div class="tile" onclick="openApp('foxnews://')">
+      <div class="icon">📰</div>
+      <div class="label"><div class="name">Fox News</div><div class="desc"></div></div>
+    </div>
+    <div class="tile" onclick="openApp('sfchronicle://')">
+      <div class="icon">📰</div>
+      <div class="label"><div class="name">SF Chronicle</div><div class="desc"></div></div>
+    </div>
+    <div class="tile" onclick="openApp('nytimes://')">
+      <div class="icon">📰</div>
+      <div class="label"><div class="name">NY Times</div><div class="desc"></div></div>
+    </div>
+    <div class="tile" onclick="openApp('nbcbay://')">
+      <div class="icon">🌦️</div>
+      <div class="label"><div class="name">NBC Bay Area</div><div class="desc">News & Weather</div></div>
+    </div>
+  </div>
 
 <h2>I want to play games</h2>
 <div class="slider">
