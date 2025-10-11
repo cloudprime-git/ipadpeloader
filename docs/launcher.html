@@ -9,7 +9,6 @@
   --bg:#0b0d10;
   --card:#0f1114;
   --glass: rgba(255,255,255,0.06);
-  --accent: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
   --glass-border: rgba(255,255,255,0.06);
   --muted: #9aa3ad;
   font-family: -apple-system, "SF Pro Text","Helvetica Neue", Arial, sans-serif;
@@ -19,6 +18,7 @@ body{
   margin:0;
   padding:20px;
   color:#e6eef8;
+  font-family:-apple-system, "SF Pro Text","Helvetica Neue", Arial, sans-serif;
   background: url('https://raw.githubusercontent.com/cloudprime-git/ipadpeloader/main/UCSFHealthParnWindowViiew.jpg') no-repeat center center fixed;
   background-size: cover;
   position: relative;
@@ -40,14 +40,15 @@ h2{
   font-weight:600;
 }
 
-.slider{
+.grid{
   display:flex;
+  flex-wrap:nowrap;
   overflow-x:auto;
   gap:12px;
   padding-bottom:8px;
   scrollbar-width:none;
 }
-.slider::-webkit-scrollbar{ display:none; }
+.grid::-webkit-scrollbar{ display:none; }
 
 .tile{
   flex:0 0 120px;
@@ -70,11 +71,7 @@ h2{
 .tile:active{ transform: translateY(2px) scale(.998); }
 .tile:hover{ box-shadow:0 12px 28px rgba(3,8,18,0.8); transform: translateY(-2px); }
 
-.icon{
-  font-size:28px;
-  margin-bottom:6px;
-}
-
+.icon{ font-size:28px; margin-bottom:6px; }
 .label .name{ font-weight:600; font-size:14px; line-height:1.2; }
 .label .desc{ color:var(--muted); font-size:11px; margin-top:2px; }
 </style>
@@ -82,70 +79,156 @@ h2{
 <body>
 
 <h2>UCSF Applications</h2>
-<div class="slider">
-  <!-- MyChart Web -->
-  <div class="tile" onclick="window.open('https://www.ucsfhealth.org/mychart','_blank')">
+<div class="grid">
+  <div class="tile" onclick="openApp('MyChart')">
     <div class="icon">🩺</div>
     <div class="label"><div class="name">MyChart</div><div class="desc">Records (Web)</div></div>
   </div>
-  <!-- Zoom -->
-  <div class="tile" onclick="openApp('zoomus://')">
+  <div class="tile" onclick="openApp('Zoom Interpreter')">
     <div class="icon">💬</div>
-    <div class="label"><div class="name">Zoom</div><div class="desc">Interpreter</div></div>
+    <div class="label"><div class="name">Zoom</div><div class="desc">Start a Meeting</div></div>
   </div>
-  <!-- Interpreter Insight -->
-  <div class="tile" onclick="openApp('insight://')">
+  <div class="tile" onclick="openApp('Insight')">
     <div class="icon">🗣️</div>
-    <div class="label"><div class="name">Insight</div><div class="desc">Interpreter App</div></div>
+    <div class="label"><div class="name">Interpreter</div><div class="desc"></div></div>
   </div>
 </div>
 
 <h2>I want to watch</h2>
-<div class="slider">
-  <div class="tile" onclick="openApp('plutotv://')"><div class="icon">📺</div><div class="label"><div class="name">Pluto TV</div></div></div>
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">🎬</div><div class="label"><div class="name">Netflix</div></div></div>
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">🦸‍♂️</div><div class="label"><div class="name">Disney+</div></div></div>
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">🏈</div><div class="label"><div class="name">ESPN</div></div></div>
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">🦊</div><div class="label"><div class="name">Fox Now</div></div></div>
-  <div class="tile" onclick="openApp('youtube://')"><div class="icon">▶️</div><div class="label"><div class="name">YouTube</div></div></div>
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">🎬</div><div class="label"><div class="name">HBO Max</div></div></div>
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">📺</div><div class="label"><div class="name">Peacock</div></div></div>
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">📺</div><div class="label"><div class="name">Tubi</div></div></div>
+<div class="grid">
+  <div class="tile" onclick="openApp('Netflix')">
+    <div class="icon">🎬</div>
+    <div class="label"><div class="name">Netflix</div><div class="desc">Movies & Shows</div></div>
+  </div>
+  <div class="tile" onclick="openApp('Pluto TV')">
+    <div class="icon">📺</div>
+    <div class="label"><div class="name">Pluto TV</div><div class="desc">Live TV</div></div>
+  </div>
+  <div class="tile" onclick="openApp('Disney+')">
+    <div class="icon">🦸‍♂️</div>
+    <div class="label"><div class="name">Disney+</div><div class="desc">Streaming</div></div>
+  </div>
+  <div class="tile" onclick="openApp('ESPN')">
+    <div class="icon">🏈</div>
+    <div class="label"><div class="name">ESPN</div><div class="desc">Sports</div></div>
+  </div>
+  <div class="tile" onclick="openApp('Fox Now')">
+    <div class="icon">🦊</div>
+    <div class="label"><div class="name">Fox Now</div><div class="desc">Live TV</div></div>
+  </div>
+  <div class="tile" onclick="openApp('YouTube')">
+    <div class="icon">▶️</div>
+    <div class="label"><div class="name">YouTube</div><div class="desc">Video</div></div>
+  </div>
 </div>
 
 <h2>Listen to Music</h2>
-<div class="slider">
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">🎵</div><div class="label"><div class="name">ABC</div></div></div>
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">🎶</div><div class="label"><div class="name">Amazon Music</div></div></div>
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">🎧</div><div class="label"><div class="name">Pandora</div></div></div>
-  <div class="tile" onclick="openApp('spotify://')"><div class="icon">🎷</div><div class="label"><div class="name">Spotify</div></div></div>
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">❤️</div><div class="label"><div class="name">iHeart</div></div></div>
+<div class="grid">
+  <div class="tile" onclick="openApp('ABC')">
+    <div class="icon">🎵</div>
+    <div class="label"><div class="name">ABC</div><div class="desc">Music</div></div>
+  </div>
+  <div class="tile" onclick="openApp('Amazon Music')">
+    <div class="icon">🎶</div>
+    <div class="label"><div class="name">Amazon Music</div><div class="desc"></div></div>
+  </div>
+  <div class="tile" onclick="openApp('Pandora')">
+    <div class="icon">🎧</div>
+    <div class="label"><div class="name">Pandora</div><div class="desc"></div></div>
+  </div>
+  <div class="tile" onclick="openApp('Spotify')">
+    <div class="icon">🎷</div>
+    <div class="label"><div class="name">Spotify</div><div class="desc"></div></div>
+  </div>
+  <div class="tile" onclick="openApp('iHeart Radio')">
+    <div class="icon">❤️</div>
+    <div class="label"><div class="name">iHeart Radio</div><div class="desc"></div></div>
+  </div>
+  <div class="tile" onclick="openApp('HBO Max')">
+    <div class="icon">🎬</div>
+    <div class="label"><div class="name">HBO Max</div><div class="desc"></div></div>
+  </div>
 </div>
 
 <h2>I want to read / news</h2>
-<div class="slider">
-  <div class="tile" onclick="openApp('calm://')"><div class="icon">😴</div><div class="label"><div class="name">Calm</div></div></div>
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">📰</div><div class="label"><div class="name">Fox News</div></div></div>
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">📰</div><div class="label"><div class="name">SF Chronicle</div></div></div>
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">📰</div><div class="label"><div class="name">NY Times</div></div></div>
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">🌦️</div><div class="label"><div class="name">NBC Bay Area</div></div></div>
+<div class="grid">
+  <div class="tile" onclick="openApp('Calm')">
+    <div class="icon">😴</div>
+    <div class="label"><div class="name">Calm</div><div class="desc">Sleep & Meditation</div></div>
+  </div>
+  <div class="tile" onclick="openApp('Fox News')">
+    <div class="icon">📰</div>
+    <div class="label"><div class="name">Fox News</div></div>
+  </div>
+  <div class="tile" onclick="openApp('SF Chronicle')">
+    <div class="icon">📰</div>
+    <div class="label"><div class="name">SF Chronicle</div></div>
+  </div>
+  <div class="tile" onclick="openApp('NY Times')">
+    <div class="icon">📰</div>
+    <div class="label"><div class="name">NY Times</div></div>
+  </div>
+  <div class="tile" onclick="openApp('NBC Bay Area')">
+    <div class="icon">🌦️</div>
+    <div class="label"><div class="name">NBC Bay Area</div><div class="desc">News & Weather</div></div>
+  </div>
 </div>
 
 <h2>I want to play games</h2>
-<div class="slider">
-  <div class="tile" onclick="openApp('com.fingerarts.sudoku2')"><div class="icon">🔢</div><div class="label"><div class="name">Sudoku</div></div></div>
-  <div class="tile" onclick="openApp('li.SolitaireCardGame')"><div class="icon">🃏</div><div class="label"><div class="name">Solitaire</div></div></div>
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">🍬</div><div class="label"><div class="name">Candy Crush</div></div></div>
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">🏃‍♂️</div><div class="label"><div class="name">Subway Surfers</div></div></div>
-  <div class="tile" onclick="openApp('selfserviceios://')"><div class="icon">👾</div><div class="label"><div class="name">Among Us</div></div></div>
+<div class="grid">
+  <div class="tile" onclick="openApp('Sudoku')">
+    <div class="icon">🔢</div>
+    <div class="label"><div class="name">Sudoku</div><div class="desc">Relaxing puzzles</div></div>
+  </div>
+  <div class="tile" onclick="openApp('Solitaire')">
+    <div class="icon">🃏</div>
+    <div class="label"><div class="name">Solitaire</div><div class="desc">Card games</div></div>
+  </div>
 </div>
 
 <script>
-function openApp(scheme){
-  const fallback = "selfserviceios://";
-  const start = Date.now();
-  window.location = scheme;
-  setTimeout(()=>{ if(Date.now()-start<2100) window.location = fallback; }, 1100);
+const appURIs = {
+  "Netflix":"nflx://",
+  "Pluto TV":"plutotv://",
+  "Disney+":"disneyplus://",
+  "ESPN":"espn://",
+  "Fox Now":"foxnow://",
+  "YouTube":"youtube://",
+  "HBO Max":"hbomax://",
+  "Spotify":"spotify://",
+  "Calm":"calm://",
+  "Zoom Interpreter":"zoommtg://",
+  "Insight":"insight://",
+  "Sudoku":"sudoku://",
+  "Solitaire":"solitaire://",
+  "MyChart":"https://www.ucsfhealth.org/mychart",
+  "ABC":"abc://",
+  "Amazon Music":"amazonmusic://",
+  "Pandora":"pandora://",
+  "iHeart Radio":"iheart://",
+  "Fox News":"foxnews://",
+  "SF Chronicle":"sfchronicle://",
+  "NY Times":"nytimes://",
+  "NBC Bay Area":"nbcbay://"
+};
+
+function openApp(appName){
+    const fallback = "selfserviceios://";
+    const uri = appURIs[appName] || fallback;
+
+    if(uri.startsWith("http")){
+        window.open(uri, "_blank");
+        return;
+    }
+
+    let pageHidden = false;
+    const visibilityHandler = () => { if(document.hidden) pageHidden=true; };
+    document.addEventListener("visibilitychange", visibilityHandler);
+    window.location = uri;
+    setTimeout(()=>{
+        if(!pageHidden) window.location = fallback;
+        document.removeEventListener("visibilitychange", visibilityHandler);
+    }, 2000);
 }
 </script>
 
