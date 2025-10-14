@@ -153,11 +153,25 @@ h2{
 </div>
 
 <script>
-function openApp(scheme){
-  const fallback = "selfserviceios://";
-  const start = Date.now();
-  window.location = scheme;
-  setTimeout(()=>{ if(Date.now()-start<2100) window.location = fallback; }, 1100);
+function openApp(uriScheme){
+    const fallback = "selfserviceios://";  // fallback if app not installed
+    let pageHidden = false;
+
+    // Listen for visibility change: if the page becomes hidden, assume app opened
+    const visibilityHandler = () => {
+        if(document.hidden) pageHidden = true;
+    };
+    document.addEventListener("visibilitychange", visibilityHandler);
+
+    // Try opening the app
+    window.location = uriScheme;
+
+    // After 2 seconds, if page still visible, go to fallback
+    setTimeout(() => {
+        if(!pageHidden) window.location = fallback;
+        // Clean up the listener
+        document.removeEventListener("visibilitychange", visibilityHandler);
+    }, 2000);
 }
 </script>
 
