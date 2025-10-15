@@ -87,6 +87,14 @@ h2{
   margin-bottom:6px;
 }
 
+.appicon {
+  width: 40px;
+  height: 40px;
+  filter: invert(1); /* Makes SVG white for dark mode */
+  opacity: 0.9;
+}
+
+
 .label .name{ font-weight:600; font-size:14px; line-height:1.2; }
 .label .desc{ color:var(--muted); font-size:11px; margin-top:2px; }
 </style>
@@ -164,10 +172,26 @@ h2{
   
 <h2>Visit Social Media</h2>
 <div class="slider">
-  <div class="tile" onclick="openApp('instagram://')"><div class="icon"></div><div class="label"><div class="name">Instagram</div></div></div>
-  <div class="tile" onclick="openApp('fb://')"><div class="icon"></div><div class="label"><div class="name">Facebook</div></div></div>
-  <div class="tile" onclick="openApp('twitter://')"><div class="icon"></div><div class="label"><div class="name">Twitter</div></div></div>
-  <div class="tile" onclick="openApp('tiktok://')"><div class="icon"></div><div class="label"><div class="name">TikTok</div></div></div>
+<div class="tile" onclick="openApp('instagram://')">
+  <div class="icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" class="appicon" /></div>
+  <div class="label"><div class="name">Instagram</div></div>
+</div>
+
+<div class="tile" onclick="openApp('fb://')">
+  <div class="icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" class="appicon" /></div>
+  <div class="label"><div class="name">Facebook</div></div>
+</div>
+
+<div class="tile" onclick="openApp('twitter://')">
+  <div class="icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" class="appicon" /></div>
+  <div class="label"><div class="name">Twitter</div></div>
+</div>
+
+<div class="tile" onclick="openApp('tiktok://')">
+  <div class="icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" class="appicon" /></div>
+  <div class="label"><div class="name">TikTok</div></div>
+</div>
+
 </div>
 
 <h2>I want to play games</h2>
@@ -201,6 +225,7 @@ function openApp(uriScheme){
     }, 2000);
 }
 </script>
+
 
 </body>
 </html>
