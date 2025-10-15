@@ -240,22 +240,27 @@ h2{
 
 <script>
 function openApp(uriScheme){
-    const fallback = "selfserviceios://";  // fallback if app not installed
+    const fallback = "selfserviceios://";  // or App Store / MDM Self Service
     let pageHidden = false;
 
-    // Listen for visibility change: if the page becomes hidden, assume app opened
+    // Detect if the app successfully opened (page loses visibility)
     const visibilityHandler = () => {
-        if(document.hidden) pageHidden = true;
+        if (document.hidden) pageHidden = true;
     };
     document.addEventListener("visibilitychange", visibilityHandler);
 
     // Try opening the app
     window.location = uriScheme;
 
-    // After 2 seconds, if page still visible, go to fallback
+    // If still visible after delay → app likely not installed
     setTimeout(() => {
-        if(!pageHidden) window.location = fallback;
-        // Clean up the listener
+        if (!pageHidden) {
+            // Ask user instead of forcing redirect
+            if (confirm("This app is not installed. Would you like to download it?")) {
+                window.location = fallback;  // Go to Self Service / App Store
+            } 
+            // If "Cancel", do nothing
+        }
         document.removeEventListener("visibilitychange", visibilityHandler);
     }, 2000);
 }
