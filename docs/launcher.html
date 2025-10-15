@@ -242,38 +242,33 @@ h2{
 <script>
 function openApp(uriScheme){
     const selfService = "selfserviceios://";
-    const appStoreFallback = "https://apps.apple.com/us/genre/ios/id36"; // or individual app links later
-    let pageHidden = false;
-    let triedSelfService = false;
+    const appStoreFallback = "https://apps.apple.com/us/genre/ios/id36"; // Update later per-app
+    const start = Date.now();
 
-    const visibilityHandler = () => {
-        if (document.hidden) pageHidden = true;
-    };
-    document.addEventListener("visibilitychange", visibilityHandler);
-
-    // Try opening the target app first
+    // Attempt to open the app
     window.location = uriScheme;
 
     setTimeout(() => {
-        if (!pageHidden) {
-            // App not installed → ask to install
-            if (confirm("This app is not installed. Would you like to download it?")) {
-                triedSelfService = true;
-                window.location = selfService; // Try Self Service first
+        const elapsed = Date.now() - start;
 
-                // Wait again to detect if Self Service opens
+        // If the user returned quickly, app likely failed to open
+        if (elapsed < 1500) {
+            if (confirm("This app is not installed. Would you like to download it?")) {
+                window.location = selfService;
+
+                // If self service also fails to open, fallback to App Store
                 setTimeout(() => {
-                    if (!document.hidden) {
-                        // Self Service failed → open App Store
+                    const elapsedAfterSelfService = Date.now() - start;
+                    if (elapsedAfterSelfService < 3500) {
                         window.location = appStoreFallback;
                     }
                 }, 2000);
             }
         }
-        document.removeEventListener("visibilitychange", visibilityHandler);
-    }, 2000);
+    }, 1200);
 }
 </script>
+
 
 
 
