@@ -238,34 +238,26 @@ h2{
 </div>
 
 
-
 <script>
 function openApp(uriScheme){
-    const selfService = "selfserviceios://";
-    const appStoreFallback = "https://apps.apple.com/us/genre/ios/id36"; // Update later per-app
-    const start = Date.now();
+    const fallback = "selfserviceios://";  // fallback if app not installed
+    let pageHidden = false;
 
-    // Attempt to open the app
+    // Listen for visibility change: if the page becomes hidden, assume app opened
+    const visibilityHandler = () => {
+        if(document.hidden) pageHidden = true;
+    };
+    document.addEventListener("visibilitychange", visibilityHandler);
+
+    // Try opening the app
     window.location = uriScheme;
 
+    // After 2 seconds, if page still visible, go to fallback
     setTimeout(() => {
-        const elapsed = Date.now() - start;
-
-        // If the user returned quickly, app likely failed to open
-        if (elapsed < 1500) {
-            if (confirm("This app is not installed. Would you like to download it?")) {
-                window.location = selfService;
-
-                // If self service also fails to open, fallback to App Store
-                setTimeout(() => {
-                    const elapsedAfterSelfService = Date.now() - start;
-                    if (elapsedAfterSelfService < 3500) {
-                        window.location = appStoreFallback;
-                    }
-                }, 2000);
-            }
-        }
-    }, 1200);
+        if(!pageHidden) window.location = fallback;
+        // Clean up the listener
+        document.removeEventListener("visibilitychange", visibilityHandler);
+    }, 2000);
 }
 </script>
 
