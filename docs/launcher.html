@@ -241,31 +241,40 @@ h2{
 
 <script>
 function openApp(uriScheme){
-    const fallback = "selfserviceios://";  // or App Store / MDM Self Service
+    const selfService = "selfserviceios://";
+    const appStoreFallback = "https://apps.apple.com/us/genre/ios/id36"; // or individual app links later
     let pageHidden = false;
+    let triedSelfService = false;
 
-    // Detect if the app successfully opened (page loses visibility)
     const visibilityHandler = () => {
         if (document.hidden) pageHidden = true;
     };
     document.addEventListener("visibilitychange", visibilityHandler);
 
-    // Try opening the app
+    // Try opening the target app first
     window.location = uriScheme;
 
-    // If still visible after delay → app likely not installed
     setTimeout(() => {
         if (!pageHidden) {
-            // Ask user instead of forcing redirect
+            // App not installed → ask to install
             if (confirm("This app is not installed. Would you like to download it?")) {
-                window.location = fallback;  // Go to Self Service / App Store
-            } 
-            // If "Cancel", do nothing
+                triedSelfService = true;
+                window.location = selfService; // Try Self Service first
+
+                // Wait again to detect if Self Service opens
+                setTimeout(() => {
+                    if (!document.hidden) {
+                        // Self Service failed → open App Store
+                        window.location = appStoreFallback;
+                    }
+                }, 2000);
+            }
         }
         document.removeEventListener("visibilitychange", visibilityHandler);
     }, 2000);
 }
 </script>
+
 
 
 </body>
