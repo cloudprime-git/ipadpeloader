@@ -93,6 +93,12 @@ h2{
   filter: invert(1); /* Makes SVG white for dark mode */
   opacity: 0.9;
 }
+.appicon2 {
+  width: 40px;
+  height: 40px;
+  filter: invert(0); /* Makes SVG white for dark mode */
+  opacity: 0.9;
+}
 
 
 .label .name{ font-weight:600; font-size:14px; line-height:1.2; }
@@ -105,12 +111,12 @@ h2{
 <div class="slider">
   <!-- MyChart Web -->
   <div class="tile" onclick="window.open('https://www.ucsfhealth.org/mychart','_blank')">
-    <div class="icon"><img src="https://raw.githubusercontent.com/cloudprime-git/ipadpeloader/main/MyChart.png" class="appicon" /></div>
+    <div class="icon"><img src="https://raw.githubusercontent.com/cloudprime-git/ipadpeloader/main/MyChart.png" class="appicon2" /></div>
     <div class="label"><div class="name">UCSF MyChart</div><div class="desc">View Medical Records</div></div>
   </div>
   <!-- Zoom -->
 <div class="tile" onclick="openApp('zoomus://')">
-  <div class="icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@15.16.1/icons/zoom.svg" class="appicon" /></div>
+  <div class="icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@15.16.1/icons/zoom.svg" class="appicon2" /></div>
   <div class="label"><div class="name">Zoom</div><div class="desc">Start a Meeting</div></div>
 </div>
   <!-- Interpreter Insight -->
